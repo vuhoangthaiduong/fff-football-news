@@ -12,19 +12,19 @@
 
 ActiveRecord::Schema.define(version: 2021_03_29_125908) do
 
-  create_table "articles", force: :cascade do |t|
+  create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.string "content"
     t.string "description"
     t.integer "view_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
+    t.bigint "user_id"
     t.index ["title"], name: "index_articles_on_title"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
-  create_table "clubs", force: :cascade do |t|
+  create_table "clubs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "history"
     t.string "stadium"
@@ -37,28 +37,28 @@ ActiveRecord::Schema.define(version: 2021_03_29_125908) do
     t.index ["stadium"], name: "index_clubs_on_stadium"
   end
 
-  create_table "comments", force: :cascade do |t|
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "content"
     t.string "description"
     t.integer "thumbs_up"
     t.integer "thumbs_down"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.integer "article_id"
+    t.bigint "user_id"
+    t.bigint "article_id"
     t.index ["article_id"], name: "index_comments_on_article_id"
     t.index ["content"], name: "index_comments_on_content"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "leagues", force: :cascade do |t|
+  create_table "leagues", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "website_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "matches", force: :cascade do |t|
+  create_table "matches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "start_at"
     t.date "end_at"
     t.integer "duration"
@@ -67,64 +67,60 @@ ActiveRecord::Schema.define(version: 2021_03_29_125908) do
     t.integer "first_team_goal_count"
     t.integer "second_team_goal_count"
     t.string "match_event"
-    t.integer "first_team_id_id"
-    t.integer "second_team_id_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["first_team_id_id"], name: "index_matches_on_first_team_id_id"
-    t.index ["second_team_id_id"], name: "index_matches_on_second_team_id_id"
+    t.bigint "first_team_id"
+    t.bigint "second_team_id"
+    t.index ["first_team_id"], name: "index_matches_on_first_team_id"
+    t.index ["second_team_id"], name: "index_matches_on_second_team_id"
   end
 
-  create_table "matches_players", id: false, force: :cascade do |t|
-    t.integer "match_id", null: false
-    t.integer "player_id", null: false
+  create_table "matches_players", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "match_id", null: false
+    t.bigint "player_id", null: false
     t.integer "enter_at"
     t.integer "exit_at"
     t.integer "goal_count"
   end
 
-  create_table "players", force: :cascade do |t|
+  create_table "players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.date "dob"
     t.string "description"
     t.integer "view_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "club_id"
+    t.bigint "club_id"
     t.index ["club_id"], name: "index_players_on_club_id"
     t.index ["name"], name: "index_players_on_name"
   end
 
-  create_table "positions", force: :cascade do |t|
+  create_table "positions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "seasons", force: :cascade do |t|
+  create_table "seasons", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "start_at"
     t.date "end_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "league_id"
+    t.bigint "league_id"
     t.index ["league_id"], name: "index_seasons_on_league_id"
   end
 
-  create_table "transfer_history", force: :cascade do |t|
+  create_table "transfer_history", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date_of_transfer"
-    t.string "from_club_id"
-    t.string "to_club_id"
     t.decimal "price", precision: 10, scale: 4
-    t.integer "from_club_id_id", null: false
-    t.integer "to_club_id_id", null: false
+    t.bigint "from_club_id", null: false
+    t.bigint "to_club_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["from_club_id_id"], name: "index_transfer_history_on_from_club_id_id"
-    t.index ["to_club_id_id"], name: "index_transfer_history_on_to_club_id_id"
+    t.index ["from_club_id"], name: "index_transfer_history_on_from_club_id"
+    t.index ["to_club_id"], name: "index_transfer_history_on_to_club_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "username"
     t.date "dob"
     t.string "email"
@@ -142,8 +138,8 @@ ActiveRecord::Schema.define(version: 2021_03_29_125908) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
-  add_foreign_key "matches", "clubs", column: "second_team_id_id"
-  add_foreign_key "matches", "first_team_ids"
+  add_foreign_key "matches", "clubs", column: "first_team_id"
+  add_foreign_key "matches", "clubs", column: "second_team_id"
   add_foreign_key "players", "clubs"
   add_foreign_key "seasons", "leagues"
   add_foreign_key "transfer_history", "clubs", column: "from_club_id"

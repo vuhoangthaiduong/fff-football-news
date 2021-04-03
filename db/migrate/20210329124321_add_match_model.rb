@@ -11,13 +11,12 @@ class AddMatchModel < ActiveRecord::Migration[6.1]
       t.integer :first_team_goal_count
       t.integer :second_team_goal_count
       t.string :match_event
-      t.references :first_team_id, foreign_key: true
-      t.references :second_team_id, foreign_key: { to_table: 'clubs' }
-      t.timestamps
+      t.references :first_team
+      t.references :second_team
     end
-
-    # add_foreign_key :matches, :clubs, column: :first_team_id
-    # add_foreign_key :matches, :clubs, column: :second_team_id
+    # Rails 5+ only: add foreign keys
+    add_foreign_key :matches, :clubs, column: :first_team_id, primary_key: :id
+    add_foreign_key :matches, :clubs, column: :second_team_id, primary_key: :id
 
   end
 end
