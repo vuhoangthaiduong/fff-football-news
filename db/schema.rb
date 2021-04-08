@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_29_125908) do
+ActiveRecord::Schema.define(version: 2021_04_07_151549) do
 
   create_table "articles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
@@ -130,6 +130,7 @@ ActiveRecord::Schema.define(version: 2021_03_29_125908) do
     t.boolean "is_admin"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "remember_digest"
     t.index ["email"], name: "index_users_on_email"
     t.index ["phone_number"], name: "index_users_on_phone_number"
     t.index ["username"], name: "index_users_on_username", unique: true
