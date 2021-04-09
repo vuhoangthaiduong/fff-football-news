@@ -2,6 +2,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
   
   before_save { self.email = email.downcase }
+
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
 
@@ -12,7 +13,7 @@ class User < ApplicationRecord
                                     uniqueness: true
 
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 
   def User.new_token
     SecureRandom.urlsafe_base64
