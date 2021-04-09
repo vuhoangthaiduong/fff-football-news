@@ -27,6 +27,12 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'mysql2', '~> 0.5'
 
+gem 'faker', '~> 2.17.0'
+
+gem 'will_paginate', '~> 3.1.0'
+
+gem 'bootstrap-will_paginate', '1.0.0'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

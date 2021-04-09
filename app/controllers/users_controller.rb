@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
-  before_action :check_if_user_exists, only: %i[show]
+  before_action :check_if_user_exists, only: %i[show edit update destroy]
+
+  def index
+    @users = User.paginate(page: params[:page], per_page: 10)
+  end
 
   def show
     # @user is defined in check_if_user_exists method
@@ -19,6 +23,24 @@ class UsersController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+  end
+
+  def update 
+    if @user.update(user_params)
+      flash[:success] = "Profile updated"
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @user.destroy
+    flash[:success] = "User deleted"
+    redirect_to users_url
+  end
     
   private
   def user_params
@@ -30,9 +52,8 @@ class UsersController < ApplicationController
     if !User.exists?(params[:id])
       flash[:info] = "User not found"
       redirect_to root_path
-    else
-      @user = User.find(params[:id])
     end
+    @user = User.find(params[:id])
   end
 
 end
