@@ -8,7 +8,16 @@ Rails.application.routes.draw do
   post   '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :news_articles, path: 'news'
-  resources :users
+  scope :app do
+    resources :users
+  end
+
+  namespace :admin do
+    root   'dashboards#index'
+    get    'dashboard',  to: 'dashboards#dashboard'
+
+    resources :users
+    resources :articles
+  end
 
 end
