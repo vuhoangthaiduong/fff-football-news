@@ -1,13 +1,32 @@
 <div class="container-fluid">
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">All users</h1>
+      <h1 class="h3 mb-0 text-gray-800">Manage Users</h1>
   </div>
 
   <!-- Content Row -->
-  <%= will_paginate %>
-    <ul class="users">
-      <%= render @users %>
-    </ul>
-  <%= will_paginate %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table no-wrap user-table mb-0">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Email</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Added</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Role</th>
+                      <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%= render @users %>
+                  </tbody>
+                </table>
+                <%= will_paginate%>
+            </div>
+        </div>
+    </div>
+</div>
 </div>

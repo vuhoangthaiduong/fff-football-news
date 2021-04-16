@@ -29,6 +29,8 @@ gem 'faker', '~> 2.17.0'
 
 gem 'will_paginate', '~> 3.1.0'
 
+gem 'bootstrap', '~> 4.3.1'
+
 gem 'bootstrap-will_paginate', '1.0.0'
 
 # Reduces boot times through caching; required in config/boot.rb

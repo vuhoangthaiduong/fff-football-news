@@ -7,6 +7,8 @@ import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "jquery"
+import "bootstrap"
+import "../stylesheets/application"
 import "./admin/sb-admin-2"
 import "./admin/bootstrap.bundle.min.js"
 

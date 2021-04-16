@@ -1,5 +1,25 @@
-<li>
-  <%= link_to user.username, admin_user_path(user) %>
-  | <%= link_to "delete", user, method: :delete,
-  data: { confirm: "You sure?" } %>
-</li>
+<tr>
+  <td class="pl-4">1</td>
+  <td>
+      <h5 class="font-medium mb-0"><%= user.username %></h5>
+      <span class="text-muted">Texas, United states</span>
+  </td>
+  <td>
+      <span class="text-muted"><%= user.email %></span><br>
+      <span class="text-muted">999 - 444 - 555</span>
+  </td>
+  <td>
+      <span class="text-muted"><%= user.created_at.to_date %></span><br>
+      <span class="text-muted"><%= user.created_at.strftime("%I:%M%p") %></span>
+  </td>
+  <td>
+    <select class="form-control category-select" id="exampleFormControlSelect1">
+      <option>Admin</option>
+      <option>User</option>
+    </select>
+  </td>
+  <td>
+    <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
+    <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+  </td>
+</tr>
