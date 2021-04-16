@@ -1,0 +1,5 @@
+<li>
+  <%= link_to user.username, admin_user_path(user) %>
+  | <%= link_to "delete", user, method: :delete,
+  data: { confirm: "You sure?" } %>
+</li>
