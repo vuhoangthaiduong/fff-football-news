@@ -1,0 +1,57 @@
+footer{
+	background-image: url("https://preview.colorlib.com/theme/specer/img/footer-bg.jpg");
+	background-size: 100%;
+
+	color: rgb(243, 235, 235);
+}
+.header-1 {
+	background-color: rgb(218, 56, 16);
+}
+a{
+	color:rgb(250, 242, 242);
+}
+.logo{
+	margin-bottom: 50px;
+}
+.top-club{	margin-bottom: 50px;}
+.recent-news{
+	margin-bottom: 50px;
+}
+.ul-col6{
+	display: flex;
+	
+}
+.ul-col6>li{
+	margin: 0 20px;
+	list-style: none;
+}	
+.ul-col6>li>a{
+	text-decoration: none;
+
+}
+.fw-links>li{
+	margin-bottom: 10px ;
+	list-style: none;
+}
+.fw-links>li>a{
+	text-decoration: none;
+}
+.ul-email{
+	list-style: none;
+}
+.ul-email>a{
+	text-decoration: none;
+}
+.fw-item>h5>a{
+	text-decoration: none;
+}
+.ul-date{
+	display: flex;
+	list-style: none;
+}
+.ul-date>li{
+	margin-right: 20px;
+}
+.fs-social>a{
+	margin-right: 10px;
+}
