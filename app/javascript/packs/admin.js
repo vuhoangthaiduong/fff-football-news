@@ -12,5 +12,7 @@ import "../stylesheets/application"
 import "./admin/sb-admin-2"
 import "./admin/bootstrap.bundle.min.js"
 
+window.$ = window.jQuery = require("jquery");
+
 Rails.start()
 ActiveStorage.start()

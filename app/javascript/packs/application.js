@@ -9,5 +9,7 @@ import "channels"
 import "jquery"
 import "bootstrap"
 
+window.$ = window.jQuery = require("jquery");
+
 Rails.start()
 ActiveStorage.start()

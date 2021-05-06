@@ -1,25 +1,20 @@
 <tr>
-  <td class="pl-4">1</td>
+  <td class="pl-4"><%= index %></td>
   <td>
-      <h5 class="font-medium mb-0"><%= user.username %></h5>
-      <span class="text-muted">Texas, United states</span>
+    <h6 class="font-medium mb-0"><%= user.username %></h6>
   </td>
   <td>
-      <span class="text-muted"><%= user.email %></span><br>
-      <span class="text-muted">999 - 444 - 555</span>
+    <span class="text-muted"><%= user.created_at.strftime("%I:%M%p") %>, </span>
+    <span class="text-muted"><%= user.created_at.to_date %></span> 
   </td>
   <td>
-      <span class="text-muted"><%= user.created_at.to_date %></span><br>
-      <span class="text-muted"><%= user.created_at.strftime("%I:%M%p") %></span>
+      <span class="text-muted"><%= user.is_admin? ? "Admin" : "User" %></span><br>
   </td>
   <td>
-    <select class="form-control category-select" id="exampleFormControlSelect1">
-      <option>Admin</option>
-      <option>User</option>
-    </select>
-  </td>
-  <td>
-    <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-trash"></i> </button>
-    <button type="button" class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2"><i class="fa fa-edit"></i> </button>
+    <%= link_to 'View Details', admin_user_path(user), class: "btn btn-sm btn-outline-success ml-2", remote: true %>
+    <% if current_user.is_admin? && user != current_user %>
+      <button type="button" class="btn btn-sm btn-outline-danger ml-2" 
+      data-toggle="modal" data-target="#destroyUserModal">Delete</button>
+    <% end %>
   </td>
 </tr>

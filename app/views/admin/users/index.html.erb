@@ -5,28 +5,35 @@
   </div>
 
   <!-- Content Row -->
-<div class="row">
-    <div class="col-md-12">
-        <div class="card">
-            <div class="table-responsive">
-                <table class="table no-wrap user-table mb-0">
-                  <thead>
-                    <tr>
-                      <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Email</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Added</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Role</th>
-                      <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <%= render @users %>
-                  </tbody>
-                </table>
-                <%= will_paginate%>
-            </div>
-        </div>
-    </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="table-responsive">
+                  <table class="table no-wrap user-table mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Username</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Registered at</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Role</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% index = 0 %>
+                      <% for user in @users %>
+                        <% index += 1 %>
+                        <%= render user, index: index %>
+                      <% end %>
+                    </tbody>
+                  </table>
+                  <div class = "pagination-wrapper float-right m-2">
+                    <%= paginate @users %>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
-</div>
+<!-- Destroy User Modal-->
+<%# <%= render "admin/users/destroy_user_modal.html.erb" %> %>

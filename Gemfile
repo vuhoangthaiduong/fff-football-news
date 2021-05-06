@@ -27,11 +27,13 @@ gem 'mysql2', '~> 0.5'
 
 gem 'faker', '~> 2.17.0'
 
-gem 'will_paginate', '~> 3.1.0'
-
 gem 'bootstrap', '~> 4.3.1'
 
-gem 'bootstrap-will_paginate', '1.0.0'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+
+gem 'active_storage_validations'
+gem 'mini_magick', '>= 4.9.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
