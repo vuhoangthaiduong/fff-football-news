@@ -56,16 +56,4 @@ class Admin::UsersController < Admin::BaseController
     :password_confirmation, :profile_picture)
   end
 
-  def check_if_user_exists
-    if !User.exists?(params[:id])
-      flash[:info] = "User not found"
-      redirect_to root_path
-    end
-    @user = User.find(params[:id])
-  end
-
-  def check_if_user_is_admin
-    redirect_to(root_url) unless current_user.is_admin?
-  end    
-
 end

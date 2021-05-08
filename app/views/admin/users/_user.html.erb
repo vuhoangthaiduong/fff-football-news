@@ -1,7 +1,7 @@
 <tr>
   <td class="pl-4"><%= index %></td>
   <td>
-    <h6 class="font-medium mb-0"><%= user.username %></h6>
+    <span class="font-medium text-muted mb-0"><%= user.username %></span>
   </td>
   <td>
     <span class="text-muted"><%= user.created_at.strftime("%I:%M%p") %>, </span>
@@ -13,8 +13,7 @@
   <td>
     <%= link_to 'View Details', admin_user_path(user), class: "btn btn-sm btn-outline-success ml-2", remote: true %>
     <% if current_user.is_admin? && user != current_user %>
-      <button type="button" class="btn btn-sm btn-outline-danger ml-2" 
-      data-toggle="modal" data-target="#destroyUserModal">Delete</button>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-user-destroy', "data-toggle" => "modal", "data-target" => "#modal" %>
     <% end %>
   </td>
 </tr>

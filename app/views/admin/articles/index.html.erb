@@ -1,7 +1,8 @@
 <div class="container-fluid">
   <!-- Page Heading -->
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Manage Users</h1>
+    <h1 class="h3 mb-0 text-gray-800">Manage Articles</h1>
+    <%= link_to "New article", new_admin_article_path, class: "btn btn-primary" %>
   </div>
 
   <!-- Content Row -->
@@ -13,22 +14,23 @@
                     <thead>
                       <tr>
                         <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
-                        <th scope="col" class="border-0 text-uppercase font-medium">Username</th>
-                        <th scope="col" class="border-0 text-uppercase font-medium">Registered at</th>
-                        <th scope="col" class="border-0 text-uppercase font-medium">Role</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Title</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Author</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Description</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Created at</th>
                         <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
                       </tr>
                     </thead>
                     <tbody>
                       <% index = 0 %>
-                      <% for user in @users %>
+                      <% for article in @articles %>
                         <% index += 1 %>
-                        <%= render user, index: index %>
+                        <%= render article, index: index %>
                       <% end %>
                     </tbody>
                   </table>
                   <div class = "pagination-wrapper float-right m-2">
-                    <%= paginate @users %>
+                    <%= paginate @articles %>
                   </div>
               </div>
           </div>
