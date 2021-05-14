@@ -14,6 +14,7 @@ class AddMatchModel < ActiveRecord::Migration[6.1]
       t.references :first_team
       t.references :second_team
     end
+
     # Rails 5+ only: add foreign keys
     add_foreign_key :matches, :clubs, column: :first_team_id, primary_key: :id
     add_foreign_key :matches, :clubs, column: :second_team_id, primary_key: :id

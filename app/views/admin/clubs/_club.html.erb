@@ -1,0 +1,22 @@
+<tr>
+  <td class="pl-4"><%= index %></td>
+  <td>
+    <span class="font-medium text-muted mb-0"><%= club.name %></span>
+  </td>
+  <td>
+      <span class="text-muted"><%= club.manager %></span><br>
+  </td>
+  <td>
+      <span class="text-muted"><%= club.founded_at %></span><br>
+  </td>
+  <td>
+    <span class="text-muted"><%= club.created_at.strftime("%I:%M%p") %>, </span>
+    <span class="text-muted"><%= club.created_at.to_date %></span> 
+  </td>
+  <td>
+    <%= link_to 'View Details', admin_club_path(club), class: "btn btn-sm btn-outline-success ml-2" %>
+    <% if current_user.is_admin? %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-club-destroy', :data => {toggle: "modal", target: "#modal", href: admin_club_path(club)} %>
+    <% end %>
+  </td>
+</tr>

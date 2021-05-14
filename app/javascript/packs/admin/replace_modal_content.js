@@ -30,4 +30,9 @@ $(document).ready(() => {
     href = $($modal.data("link")).data('href');
     replaceWithDestroyModal("season");
   });
+
+  $(document).on("click", ".js-club-destroy", function(e) {
+    href = $($modal.data("link")).data('href');
+    replaceWithDestroyModal("club");
+  });
 })
