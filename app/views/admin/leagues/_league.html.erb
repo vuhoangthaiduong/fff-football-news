@@ -1,0 +1,25 @@
+<tr>
+  <td class="pl-4"><%= index %></td>
+  <td>
+    <span class="font-medium text-muted mb-0"><%= league.name %></span>
+  </td>
+  <td>
+      <span class="text-muted"><%= league.venue %></span><br>
+  </td>
+  <td>
+      <span class="text-muted"><%= league.founder %></span><br>
+  </td>
+  <td>
+      <span class="text-muted"><%= league.founded_at %></span><br>
+  </td>
+  <td>
+    <span class="text-muted"><%= league.created_at.strftime("%I:%M%p") %>, </span>
+    <span class="text-muted"><%= league.created_at.to_date %></span> 
+  </td>
+  <td>
+    <%= link_to 'View Details', admin_league_path(league), class: "btn btn-sm btn-outline-success ml-2" %>
+    <% if current_user.is_admin? %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-league-destroy', "data-toggle" => "modal", "data-target" => "#modal" %>
+    <% end %>
+  </td>
+</tr>

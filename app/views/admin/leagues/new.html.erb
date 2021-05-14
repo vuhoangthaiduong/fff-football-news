@@ -1,0 +1,36 @@
+<div class="container-fluid">
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">New League</h1>
+  </div>
+  <%= form_for([:admin, @league]) do |f| %>
+    <%= render 'layouts/shared/error_messages', object: @league %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :website %>
+      <%= f.text_field :website_url, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :venue %>
+      <%= f.text_field :venue, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :founder %>
+      <%= f.text_field :founder, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :founded_at %>
+      <%= f.date_field :founded_at, as: :date, class: 'form-control' %> 
+    </div>
+    <div class="form-group">
+      <%= f.label :logo %>
+      <%= f.file_field :logo, accept: "image/jpeg,image/gif,image/png" %>
+    </div>
+    <div class="col d-flex justify-content-end">
+      <%= link_to "Cancel", admin_leagues_path, class: "btn btn-secondary mr-2" %>
+      <%= f.submit "Create", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>

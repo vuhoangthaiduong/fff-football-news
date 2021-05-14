@@ -13,7 +13,7 @@
   <td>
     <%= link_to 'View Details', admin_user_path(user), class: "btn btn-sm btn-outline-success ml-2", remote: true %>
     <% if current_user.is_admin? && user != current_user %>
-      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-user-destroy', "data-toggle" => "modal", "data-target" => "#modal" %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-user-destroy', :data => {toggle: "modal", target: "#modal", href: admin_user_path(user)} %>
     <% end %>
   </td>
 </tr>

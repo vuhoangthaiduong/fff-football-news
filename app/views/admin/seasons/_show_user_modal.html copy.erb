@@ -1,0 +1,18 @@
+<div class="mx-auto mb-3" style="width: 140px;">
+  <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+    <%= image_tag @user.profile_picture, class: "img-profile rounded-circle", style: "height: inherit; width: inherit" if @user.profile_picture.attached? %>
+  </div>
+</div>
+
+<p><b>Username:</b> <%= @user.username %></p>
+<p><b>Name:</b> <%= @user.name %></p>
+<p><b>Email:</b> <%= @user.email %></p>
+<p><b>Phone:</b> <%= @user.phone_number %></p>
+<p><b>Birthday:</b> <%= @user.dob %></p>
+<p>
+  <b>Registered at:</b>    
+  <span class="text-muted"><%= @user.created_at.strftime("%I:%M%p") %>, </span>
+  <span class="text-muted"><%= @user.created_at.to_date %></span> 
+</p>
+<p><b>Role:</b> <%= @user.is_admin? ? "Admin" : "User" %></p>
+

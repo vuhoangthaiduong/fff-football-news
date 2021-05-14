@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage Leagues</h1>
+    <%= link_to "New league", new_admin_league_path, class: "btn btn-primary" %>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="table-responsive">
+                  <table class="table no-wrap user-table mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Venue</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Founder</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Founded At</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Created At</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% index = 0 %>
+                      <% for league in @leagues %>
+                        <% index += 1 %>
+                        <%= render league, index: index %>
+                      <% end %>
+                    </tbody>
+                  </table>
+                  <div class = "pagination-wrapper float-right m-2">
+                    <%= paginate @leagues %>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
