@@ -36,9 +36,13 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update 
-    if @user.update(user_params) && @user.profile_picture.attach(params[:user][:profile_picture])
-      flash[:success] = "Profile updated"
-      redirect_to @user
+    if @user.update(user_params)
+      if params[:user][:profile_picture].nil? || (!params[:user][:profile_picture].nil? && @user.profile_picture.attach(params[:user][:profile_picture]))
+        flash[:success] = "User profile updated"
+        redirect_to admin_user_path(@user)
+      else
+        render 'edit'
+      end
     else
       render 'edit'
     end
