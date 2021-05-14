@@ -52,7 +52,7 @@ class Admin::LeaguesController < Admin::BaseController
   private
 
     def league_params
-      params.require(:league).permit(:name, :website_url, :venue, :founder, :founded_at)
+      params.require(:league).permit(:name, :website_url, :region, :founded_at)
     end
 
     def check_if_league_exists
