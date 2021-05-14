@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
     resources :users
     resources :articles
+    resources :clubs
     resources :leagues do
       resources :seasons
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_154744) do
+ActiveRecord::Schema.define(version: 2021_05_14_165348) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -56,11 +56,11 @@ ActiveRecord::Schema.define(version: 2021_05_14_154744) do
     t.string "name"
     t.string "history"
     t.string "stadium"
-    t.string "founder"
+    t.string "manager"
     t.date "founded_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["founder"], name: "index_clubs_on_founder"
+    t.index ["manager"], name: "index_clubs_on_manager"
     t.index ["name"], name: "index_clubs_on_name"
     t.index ["stadium"], name: "index_clubs_on_stadium"
   end
@@ -99,6 +99,8 @@ ActiveRecord::Schema.define(version: 2021_05_14_154744) do
     t.string "match_event"
     t.bigint "first_team_id"
     t.bigint "second_team_id"
+    t.bigint "club_id"
+    t.index ["club_id"], name: "index_matches_on_club_id"
     t.index ["first_team_id"], name: "index_matches_on_first_team_id"
     t.index ["second_team_id"], name: "index_matches_on_second_team_id"
   end
@@ -173,6 +175,7 @@ ActiveRecord::Schema.define(version: 2021_05_14_154744) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
+  add_foreign_key "matches", "clubs"
   add_foreign_key "matches", "clubs", column: "first_team_id"
   add_foreign_key "matches", "clubs", column: "second_team_id"
   add_foreign_key "players", "clubs"
