@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_one_attached :profile_picture
 
   validates :username, presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -12,6 +13,10 @@ class User < ApplicationRecord
                                     format: { with: VALID_EMAIL_REGEX },
                                     uniqueness: true
 
+  validates :profile_picture, content_type: ['image/png', 'image/jpg', 'image/jpeg'],
+                              size: { less_than: 5.megabytes, 
+                              message: 'Image must be smaller than 5MB' }
+                                    
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
 

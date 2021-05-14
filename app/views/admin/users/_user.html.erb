@@ -1,5 +1,19 @@
-<li>
-  <%= link_to user.username, admin_user_path(user) %>
-  | <%= link_to "delete", user, method: :delete,
-  data: { confirm: "You sure?" } %>
-</li>
+<tr>
+  <td class="pl-4"><%= index %></td>
+  <td>
+    <span class="font-medium text-muted mb-0"><%= user.username %></span>
+  </td>
+  <td>
+    <span class="text-muted"><%= user.created_at.strftime("%I:%M%p") %>, </span>
+    <span class="text-muted"><%= user.created_at.to_date %></span> 
+  </td>
+  <td>
+      <span class="text-muted"><%= user.is_admin? ? "Admin" : "User" %></span><br>
+  </td>
+  <td>
+    <%= link_to 'View Details', admin_user_path(user), class: "btn btn-sm btn-outline-success ml-2", remote: true %>
+    <% if current_user.is_admin? && user != current_user %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-user-destroy', :data => {toggle: "modal", target: "#modal", href: admin_user_path(user)} %>
+    <% end %>
+  </td>
+</tr>

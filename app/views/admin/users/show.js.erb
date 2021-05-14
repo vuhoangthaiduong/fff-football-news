@@ -1,0 +1,6 @@
+$modal = $('#modal'),
+$modalBody = $('#modalBody'),
+$modalTitle = $('#modalTitle');
+$modalTitle.html("User Info");
+$modalBody.html("<%= escape_javascript(render 'show_user_modal.html.erb') %>");
+$modal.modal();

@@ -1,16 +1,118 @@
-<h1>Update your profile</h1>
-<div class="row">
-   <div class="col-md-6 col-md-offset-3">
-      <%= form_for(@user) do |f| %>
-      <%= f.label :username %>
-      <%= f.text_field :username, class: 'form-control' %>
-      <%= f.label :email %>
-      <%= f.email_field :email, class: 'form-control' %>
-      <%= f.label :password %>
-      <%= f.password_field :password, class: 'form-control' %>
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation, class: 'form-control' %>
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
-      <% end %>
-   </div>
+<div class="container">
+  <div class="row flex-lg-nowrap">
+    <div class="col-12 col-lg-3 mb-3">
+      <div class="card p-3 shadow-none">
+        <div class="e-navlist e-navlist--active-bg">
+          <ul class="nav">
+            <li class="nav-item"><%= link_to "Edit profile", edit_admin_user_path(@user), class: "nav-link px-2 active" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  <%= form_for @user, url: admin_user_path(@user) do |f| %>
+  <%= render 'layouts/shared/error_messages', object: @user %>
+    <div class="col">
+      <div class="row">
+        <div class="col mb-3">
+          <div class="card shadow-none">
+            <div class="card-body">
+              <div class="e-profile">
+                <div class="row">
+                  <div class="col-12 col-sm-auto mb-3">
+                    <div class="mx-auto" style="width: 140px;">
+                      <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                        <%= image_tag @user.profile_picture, style: "height: inherit; width: inherit" if @user.profile_picture.attached? %>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
+                    <div class="text-center text-sm-left mb-2 mb-sm-0">
+                      <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap"><%= current_user.username %></h4>
+                      <p class="mb-0"><%= current_user.username %></p>
+                      <div class="mt-2">
+                        <%= f.file_field :profile_picture, accept: "image/jpeg,image/gif,image/png" %>
+                      </div>
+                    </div>
+                    <div class="text-center text-sm-right">
+                      <% if @user.is_admin %>
+                        <span class="badge badge-secondary">administrator</span>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <ul class="nav nav-tabs">
+                  <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
+                </ul>
+                <div class="tab-content pt-3">
+                  <div class="tab-pane active">
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <%= f.label :name %>
+                                <%= f.text_field :name, class: 'form-control' %>
+                              </div>
+                            </div>
+                            <div class="col">
+                              <div class="form-group">
+                                <%= f.label :username %>
+                                <%= f.text_field :username, class: 'form-control' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <%= f.label :email %>
+                                <%= f.text_field :email, class: 'form-control' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <%= f.label :phone_number %>
+                                <%= f.text_field :phone_number, class: 'form-control' %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 mb-3">
+                          <div class="mb-2"><b>Change Password</b></div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <%= f.label :password %>
+                                <%= f.password_field :password, class: 'form-control' %>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              <div class="form-group">
+                                <%= f.label :password_confirmation, "Confirm password" %>
+                                  <%= f.password_field :password_confirmation, class: 'form-control' %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <%= f.submit "Save changes", class: "btn btn-primary" %>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
 </div>

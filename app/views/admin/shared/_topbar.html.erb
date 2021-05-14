@@ -166,14 +166,15 @@
         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= current_user.username %></span>
-        <img class="img-profile rounded-circle"
-            src="https://source.unsplash.com/Mv9hjnEUHR4/60x60">
+        <% if current_user.profile_picture.attached? %>
+          <%= image_tag current_user.profile_picture, class: "img-profile rounded-circle", style: "height: 35px; width: 35px"%>
+        <% end %> 
         </a>
 
         <!-- Dropdown - User Information -->
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
             aria-labelledby="userDropdown">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="<%= edit_admin_user_path(current_user) %>">
             <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
             Profile
             </a>

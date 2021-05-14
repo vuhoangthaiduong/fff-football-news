@@ -1,12 +1,19 @@
 class Admin::UsersController < Admin::BaseController
   before_action :check_if_user_exists, only: %i[show edit update destroy]
+  before_action :check_if_user_is_admin, only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.all.page(params[:page]).per(10)
   end
 
   def show
     # @user is defined in check_if_user_exists method
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.js # show.js.erb
+    end
+
   end
 
   def new
@@ -15,6 +22,7 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(user_params)
+    @user.profile_picture.attach(params[:users][:profile_picture])
     if @user.save
       log_in @user
       flash[:success] = "Welcome to FFN!"
@@ -28,7 +36,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update 
-    if @user.update(user_params)
+    if @user.update(user_params) && @user.profile_picture.attach(params[:user][:profile_picture])
       flash[:success] = "Profile updated"
       redirect_to @user
     else
@@ -39,21 +47,13 @@ class Admin::UsersController < Admin::BaseController
   def destroy
     @user.destroy
     flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to admin_users_url
   end
     
   private
   def user_params
     params.require(:user).permit(:username, :email, :password,
-    :password_confirmation)
-  end
-
-  def check_if_user_exists
-    if !User.exists?(params[:id])
-      flash[:info] = "User not found"
-      redirect_to root_path
-    end
-    @user = User.find(params[:id])
+    :password_confirmation, :profile_picture)
   end
 
 end

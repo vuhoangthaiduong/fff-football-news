@@ -1,0 +1,45 @@
+<section id="feature_category_section" class="feature_category_section single-page section_wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="single_content_layout">
+          <div class="item feature_news_item">
+            <div class="item_img">
+            </div>
+            <div class="item_wrapper">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="news_item_title">
+                  <%= link_to @league.name, admin_league_path(@league), class: "h2" %>
+                </div>
+                <div class="mx-auto mb-3" style="width: 140px;">
+                  <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                    <%= image_tag @league.logo, class: "img-profile", style: "height: inherit; width: inherit" if @league.logo.attached? %>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Action
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <%= link_to "Edit", edit_admin_league_path(@league), class: "dropdown-item" %>
+                    <%= link_to "Delete", admin_league_path(@league), class: "dropdown-item", method: :delete %>
+                  </div>
+                </div>
+
+              </div>
+
+              <p><b>Name:</b> <%= @league.name %></p>
+              <p><b>Website URL:</b> <%= @league.website_url %></p>
+              <p><b>Venue:</b> <%= @league.venue %></p>
+              <p><b>Founder:</b> <%= @league.founder %></p>
+              <p><b>Founded at:</b> <%= @league.founded_at %></p>
+              <div><b>Seasons:</b> </ul class="list-group"><%= render @league.seasons %></ul></div>
+              <div><%= link_to 'Add season', new_admin_league_season_path(league_id: @league.id), class: "btn btn-sm btn-outline-success mt-2", remote: true %>                                             
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

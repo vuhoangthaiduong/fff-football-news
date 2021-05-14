@@ -1,0 +1,6 @@
+$modal = $('#modal'),
+$modalBody = $('#modalBody'),
+$modalTitle = $('#modalTitle');
+$modalTitle.html("New season");
+$modalBody.html("<%= escape_javascript(render 'new_season_modal.html.erb') %>");
+$modal.modal();

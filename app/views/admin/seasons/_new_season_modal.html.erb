@@ -1,0 +1,15 @@
+<%= form_for(@season, url: admin_league_seasons_path) do |f| %>
+<%= render 'layouts/shared/error_messages', object: @season %>
+<div class="form-group">
+  <%= f.label :start_at %>
+  <%= f.date_field :start_at, as: :date, class: 'form-control' %> 
+</div>
+<div class="form-group">
+  <%= f.label :end_at %>
+  <%= f.date_field :end_at, as: :date, class: 'form-control' %>
+</div> 
+<div class="col d-flex justify-content-end">
+  <%= submit_tag 'Cancel', type: :reset, class: "btn btn-secondary mr-2", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>

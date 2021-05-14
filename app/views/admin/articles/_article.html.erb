@@ -1,0 +1,22 @@
+<tr>
+  <td class="pl-4"><%= index %></td>
+  <td>
+    <span class="font-medium text-muted mb-0"><%= article.title %></span>
+  </td>
+  <td>
+    <span class="text-muted"><%= article.user.username %></span><br>
+  </td>
+  <td>
+      <span class="text-muted"><%= article.description %></span><br>
+  </td>
+  <td>
+    <span class="text-muted"><%= article.created_at.strftime("%I:%M%p") %>, </span>
+    <span class="text-muted"><%= article.created_at.to_date %></span> 
+  </td>
+  <td>
+    <%= link_to 'View Details', admin_article_path(article), class: "btn btn-sm btn-outline-success ml-2" %>
+    <% if current_user.is_admin? %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-article-destroy', :data => {toggle: "modal", target: "#modal", href: admin_article_path(article)} %>
+    <% end %>
+  </td>
+</tr>

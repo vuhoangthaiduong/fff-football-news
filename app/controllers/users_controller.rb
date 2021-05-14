@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :check_if_user_exists, only: %i[show edit update destroy]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.all.page(params[:page]).per(5)
   end
 
   def show

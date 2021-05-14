@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang='en'>
   <head>
-    <%= stylesheet_link_tag "admin", media: "all" %>
+    <%= stylesheet_pack_tag "admin", media: "all" %>
+    <%= javascript_pack_tag "admin" %>
     <%= csrf_meta_tags %>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,8 +46,7 @@
     <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
     </a>
-    <!-- Logout Modal-->
-    <%= render "admin/shared/logout_modal.html.erb" %>
-    <%= javascript_pack_tag "admin.js" %>
+    <!-- Modal-->
+    <%= render "admin/shared/modal.html.erb" %>
   </body>
 </html>
