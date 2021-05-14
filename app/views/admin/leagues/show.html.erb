@@ -30,8 +30,7 @@
 
               <p><b>Name:</b> <%= @league.name %></p>
               <p><b>Website URL:</b> <%= @league.website_url %></p>
-              <p><b>Venue:</b> <%= @league.venue %></p>
-              <p><b>Founder:</b> <%= @league.founder %></p>
+              <p><b>Region:</b> <%= @league.region %></p>
               <p><b>Founded at:</b> <%= @league.founded_at %></p>
               <div><b>Seasons:</b> </ul class="list-group"><%= render @league.seasons %></ul></div>
               <div><%= link_to 'Add season', new_admin_league_season_path(league_id: @league.id), class: "btn btn-sm btn-outline-success mt-2", remote: true %>                                             
