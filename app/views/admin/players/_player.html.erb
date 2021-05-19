@@ -1,0 +1,22 @@
+<tr>
+  <td class="pl-4"><%= index %></td>
+  <td>
+    <span class="font-medium text-muted mb-0"><%= player.name %></span>
+  </td>
+  <td>
+      <span class="text-muted"><%= player.dob %></span><br>
+  </td>
+  <td>
+      <span class="text-muted"><%= player.club.name %></span><br>
+  </td>
+  <td>
+    <span class="text-muted"><%= player.created_at.strftime("%I:%M%p") %>, </span>
+    <span class="text-muted"><%= player.created_at.to_date %></span> 
+  </td>
+  <td>
+    <%= link_to 'View Details', admin_player_path(player), class: "btn btn-sm btn-outline-success ml-2" %>
+    <% if current_user.is_admin? %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-player-destroy', :data => {toggle: "modal", target: "#modal", href: admin_player_path(player)} %>
+    <% end %>
+  </td>
+</tr>
