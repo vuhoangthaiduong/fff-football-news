@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_170109) do
+ActiveRecord::Schema.define(version: 2021_05_14_172648) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -122,13 +122,15 @@ ActiveRecord::Schema.define(version: 2021_05_14_170109) do
   create_table "players", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.date "dob"
-    t.string "description"
-    t.integer "view_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "club_id"
+    t.bigint "position_id"
+    t.bigint "nationality_id"
     t.index ["club_id"], name: "index_players_on_club_id"
     t.index ["name"], name: "index_players_on_name"
+    t.index ["nationality_id"], name: "index_players_on_nationality_id"
+    t.index ["position_id"], name: "index_players_on_position_id"
   end
 
   create_table "positions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -185,6 +187,8 @@ ActiveRecord::Schema.define(version: 2021_05_14_170109) do
   add_foreign_key "matches", "clubs", column: "first_team_id"
   add_foreign_key "matches", "clubs", column: "second_team_id"
   add_foreign_key "players", "clubs"
+  add_foreign_key "players", "nationalities"
+  add_foreign_key "players", "positions"
   add_foreign_key "seasons", "leagues"
   add_foreign_key "transfer_history", "clubs", column: "from_club_id"
   add_foreign_key "transfer_history", "clubs", column: "to_club_id"

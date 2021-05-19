@@ -1,0 +1,42 @@
+<section id="feature_category_section" class="feature_category_section single-page section_wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="single_content_layout">
+          <div class="item feature_news_item">
+            <div class="item_img">
+            </div>
+            <div class="item_wrapper">
+              <div class="d-flex justify-content-between mb-3">
+                <div class="news_item_title">
+                  <%= link_to @player.name, admin_player_path(@player), class: "h2" %>
+                </div>
+                <div class="mx-auto mb-3" style="width: 140px;">
+                  <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
+                    <%= image_tag @player.picture, class: "img-profile", style: "height: inherit; width: inherit" if @player.picture.attached? %>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Action
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <%= link_to "Edit", edit_admin_player_path(@player), class: "dropdown-item" %>
+                    <%= link_to "Delete", admin_player_path(@player), class: "dropdown-item", method: :delete %>
+                  </div>
+                </div>
+
+              </div>
+
+              <p><b>Name:</b> <%= @player.name %></p>
+              <p><b>Date of Birth:</b> <%= @player.dob %></p>
+              <p><b>Club:</b> <%= @player.club.name %></p>
+              <p><b>Nationality:</b> <%= @player.nationality.name %></p>
+              <p><b>Postion:</b> <%= @player.position.name %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
