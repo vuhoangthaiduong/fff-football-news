@@ -12,8 +12,13 @@ import "../stylesheets/admin"
 import "./admin/sb-admin-2"
 import "./admin/bootstrap.bundle.min.js"
 import "./admin/replace_modal_content.js"
+import "./admin/seasons.js"
 
 window.$ = window.jQuery = require("jquery");
+require("jquery-datetimepicker")
 
 Rails.start()
 ActiveStorage.start()
+$(document).ready(function() {
+  $('.datetimepicker').datetimepicker();
+});

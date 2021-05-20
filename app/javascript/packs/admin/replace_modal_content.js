@@ -35,4 +35,9 @@ $(document).ready(() => {
     href = $($modal.data("link")).data('href');
     replaceWithDestroyModal("club");
   });
+
+  $(document).on("click", ".js-match-destroy", function(e) {
+    href = $($modal.data("link")).data('href');
+    replaceWithDestroyModal("match");
+  });
 })

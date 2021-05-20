@@ -51,6 +51,18 @@ class Admin::SeasonsController < Admin::BaseController
     redirect_to admin_league_path(league)
   end
 
+  def get_seasons_by_league
+    url = request.url
+    uri = URI.parse(url)
+    params = CGI.parse(uri.query)   
+    league_id = params['league_id'].first
+    @seasons = Season.where(league_id: league_id)
+
+    respond_to do |format|
+      format.json { render json: @seasons }
+    end
+  end
+
   private
 
     def season_params

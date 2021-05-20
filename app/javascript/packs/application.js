@@ -10,6 +10,10 @@ import "jquery"
 import "bootstrap"
 
 window.$ = window.jQuery = require("jquery");
+require("jquery-datetimepicker")
 
 Rails.start()
 ActiveStorage.start()
+$(document).ready(function() {
+  $('.datetimepicker').datetimepicker();
+});

@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Edit Match</h1>
+    <h1 class="h3 mb-0 text-gray-800">New Match</h1>
   </div>
   <%= form_for([:admin, @match]) do |f| %>
     <%= render 'layouts/shared/error_messages', object: @match %>
@@ -8,20 +8,34 @@
       <div class = "col">
         <div class="form-group">
           <%= f.label :league %>
-          <%= select_tag "league", options_from_collection_for_select(@leagues, "id", "name"), { class: "custom-select" } %>
+          <%= select_tag :league, options_from_collection_for_select(League.all, "id", "name"), { include_blank: true, class: "custom-select" } %>
         </div>
       </div>
       <div class = "col">
         <div class="form-group">
           <%= f.label :season %>
-          <%= %>
-          <%= f.select :season_id, options_for_select(Season.all.map{|s| ["#{s.start_at} - #{s.end_at}", s.id]}), {}, { class: "custom-select" }  %>
+          <% if @match.season.nil? || @match.season.league.nil? %>
+            <% options = [] %>
+          <% else %>
+            <% options = Season.where(league_id: @match.season.league_id).map{|s| ["#{s.start_at} - #{s.end_at}", s.id]}%>
+          <% end %>
+          <%= f.select :season_id, options_for_select(options), {}, { include_blank: true, class: "custom-select" }  %>
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <%= f.label :end_at %>
-      <%= f.text_field :end_at, class: 'form-control datetimepicker' %> 
+    <div class = "row">
+      <div class = "col">
+        <div class="form-group">
+          <%= f.label :start_at %>
+          <%= f.text_field :start_at, autocomplete: :off, class: 'form-control datetimepicker' %> 
+        </div>
+      </div>
+      <div class = "col">
+        <div class="form-group">
+          <%= f.label :end_at %>
+          <%= f.text_field :end_at, autocomplete: :off, class: 'form-control datetimepicker' %> 
+        </div>
+      </div>
     </div>
     <div class="form-group">
       <%= f.label :stage_in_league %>
@@ -41,7 +55,7 @@
     </div>
     <div class="col d-flex justify-content-end">
       <%= link_to "Cancel", admin_matches_path, class: "btn btn-secondary mr-2" %>
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <%= f.submit "Create match", class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

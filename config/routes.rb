@@ -15,11 +15,14 @@ Rails.application.routes.draw do
   namespace :admin do
     root   'dashboards#index'
     get    'dashboard',  to: 'dashboards#dashboard'
+    get    'seasons/get_seasons_by_league/:league_id', to: 'seasons#get_seasons_by_league'  
+
 
     resources :users
     resources :articles
     resources :clubs
     resources :players
+    resources :matches
     resources :leagues do
       resources :seasons
     end
