@@ -1,10 +1,10 @@
 class Match < ApplicationRecord
-  belongs_to :club
   belongs_to :season
-  # has_many :matches, through: :matches_players
+  belongs_to :first_team, class_name: "Club"
+  belongs_to :second_team, class_name: "Club"
 
-  validates :start_at, presence: true
-  validates :end_at, presence: true
+  # validates :start_at, presence: true
+  # validates :end_at, presence: true
 
 end
     

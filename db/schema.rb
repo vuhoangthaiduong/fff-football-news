@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_14_172648) do
+ActiveRecord::Schema.define(version: 2021_05_19_142543) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 2021_05_14_172648) do
   end
 
   create_table "matches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.date "start_at"
-    t.date "end_at"
+    t.datetime "start_at"
+    t.datetime "end_at"
     t.integer "duration"
     t.string "stage_in_league"
     t.string "judge_name"
@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(version: 2021_05_14_172648) do
     t.string "match_event"
     t.bigint "first_team_id"
     t.bigint "second_team_id"
-    t.bigint "club_id"
-    t.index ["club_id"], name: "index_matches_on_club_id"
+    t.bigint "season_id"
     t.index ["first_team_id"], name: "index_matches_on_first_team_id"
+    t.index ["season_id"], name: "index_matches_on_season_id"
     t.index ["second_team_id"], name: "index_matches_on_second_team_id"
   end
 
@@ -183,7 +183,6 @@ ActiveRecord::Schema.define(version: 2021_05_14_172648) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
-  add_foreign_key "matches", "clubs"
   add_foreign_key "matches", "clubs", column: "first_team_id"
   add_foreign_key "matches", "clubs", column: "second_team_id"
   add_foreign_key "players", "clubs"

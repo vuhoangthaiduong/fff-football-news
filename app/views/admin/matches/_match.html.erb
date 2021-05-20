@@ -1,0 +1,23 @@
+<tr>
+  <td class="pl-4"><%= index %></td>
+  <td>
+    <span class="font-medium text-muted mb-0"><%= match.first_team.name %></span>
+  </td>
+  <td>
+    <span class="font-medium text-muted mb-0"><%= match.second_team.name %></span>
+  </td>
+  <td>
+    <span class="text-muted"><%= match.start_at.strftime("%I:%M%p") %>, </span>
+    <span class="text-muted"><%= match.start_at.to_date %></span> 
+  </td>
+  <td>
+    <span class="text-muted"><%= match.end_at.strftime("%I:%M%p") %>, </span>
+    <span class="text-muted"><%= match.end_at.to_date %></span> 
+  </td>
+  <td>
+    <%= link_to 'View Details', admin_match_path(match), class: "btn btn-sm btn-outline-success ml-2" %>
+    <% if current_user.is_admin? %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-match-destroy', :data => {toggle: "modal", target: "#modal", href: admin_match_path(match)} %>
+    <% end %>
+  </td>
+</tr>

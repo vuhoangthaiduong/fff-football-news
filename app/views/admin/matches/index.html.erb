@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Manage Matches</h1>
+    <%= link_to "New match", new_admin_match_path, class: "btn btn-primary" %>
+  </div>
+
+  <!-- Content Row -->
+  <div class="row">
+      <div class="col-md-12">
+          <div class="card">
+              <div class="table-responsive">
+                  <table class="table no-wrap user-table mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">First Team</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Second Team</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">Start At</th>
+                        <th scope="col" class="border-0 text-uppercase font-medium">End At</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% index = 0 %>
+                      <% for match in @matches %>
+                        <% index += 1 %>
+                        <%= render match, index: index %>
+                      <% end %>
+                    </tbody>
+                  </table>
+                  <div class = "pagination-wrapper float-right m-2">
+                    <%= paginate @matches %>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
