@@ -22,6 +22,7 @@
                   </button>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                     <%= link_to "Edit", edit_admin_player_path(@player), class: "dropdown-item" %>
+                    <%= button_tag "Transfer", type: 'button', class: 'dropdown-item js-player-transfer', :data => {toggle: "modal", target: "#player-transfer-modal", href: '#'} %>
                     <%= link_to "Delete", admin_player_path(@player), class: "dropdown-item", method: :delete %>
                   </div>
                 </div>
@@ -33,6 +34,7 @@
               <p><b>Club:</b> <%= @player.club.name %></p>
               <p><b>Nationality:</b> <%= @player.nationality.name %></p>
               <p><b>Postion:</b> <%= @player.position.name %></p>
+              <div><b>Transfer History:</b> </ul class="list-group"><%= render partial: "admin/players/transfer_history", collection: @player.transfer_histories %></ul></div>
             </div>
           </div>
         </div>
@@ -40,3 +42,5 @@
     </div>
   </div>
 </section>
+
+<%= render 'admin/players/player_transfer_modal' %>

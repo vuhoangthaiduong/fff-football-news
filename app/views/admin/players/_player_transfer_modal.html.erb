@@ -1,0 +1,48 @@
+<div class="modal fade" id="player-transfer-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content" id="modalContent">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle">Transfer Player</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modalBody">
+            <%= form_for(@player.transfer_histories.build, url: admin_player_transfer_histories_path(@player.id)) do |f| %>
+            <div><%= hidden_field_tag :player_id, @player.id %></div>
+              <div class = "row">
+                  <div class = "col">
+                    <%= f.label :transfer_from %>
+                    <div><b><%= @player.club.name %></b></div>
+                  </div>
+                  <div class = "col">
+                    <div class="form-group">
+                      <%= f.label :transfer_to %>
+                      <% options = Club.where("id != ?", @player.club.id).map{|s| ["#{s.name}", s.id]}%>
+                      <%= f.select :to_club_id, options_for_select(options), {}, { include_blank: true, class: "custom-select" }  %>
+                    </div>
+                  </div>
+              </div>
+              <div class = "row">
+                  <div class = "col">
+                    <div class="form-group">
+                      <%= f.label :date_of_transfer %>
+                      <%= f.text_field :date_of_transfer, autocomplete: :off, class: 'form-control datetimepicker' %> 
+                    </div>
+                  </div>
+                <div class = "col">
+                  <div class="form-group">
+                    <%= f.label :for %>
+                    <%= f.number_field :price, placeholder: "Price in USD", min: 0, class: 'form-control' %>
+                  </div>
+                </div>
+              </div>
+          </div>
+          <div class="modal-footer" id="modalFooter">
+            <button class='btn btn-secondary' type='button' data-dismiss='modal'>Cancel</button>
+            <%= f.submit "Transfer", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+</div>

@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     resources :users
     resources :articles
     resources :clubs
-    resources :players
+    resources :players do
+      resources :transfer_histories, only: [:create, :destroy]
+    end
     resources :matches
     resources :leagues do
       resources :seasons

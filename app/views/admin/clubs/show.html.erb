@@ -33,6 +33,7 @@
               <p><b>Stadium:</b> <%= @club.stadium %></p>
               <p><b>History:</b> <%= @club.history %></p>
               <p><b>Founded at:</b> <%= @club.founded_at %></p>
+              <div><b>Players:</b> </ul class="list-group"><%= render partial: "admin/players/player_in_club", collection: @club.players, as: :player %></ul></div>
             </div>
           </div>
         </div>

@@ -1,0 +1,7 @@
+<li class="list-group-item">
+  From <b><%= transfer_history.from_club.name %></b> to <b><%= transfer_history.to_club.name %></b>
+  at <b><%= transfer_history.date_of_transfer %></b> for <b><%= transfer_history.price %></b>
+  <% if current_user.is_admin? %>
+    <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-link ml-2 js-transfer-history-destroy', :data => {toggle: "modal", target: "#modal", href: admin_player_transfer_history_path(player_id: transfer_history.player.id, id: transfer_history.id), remote: true} %>
+  <% end %>
+</li>

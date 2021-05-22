@@ -14,15 +14,15 @@
     </div>
     <div class="form-group">
       <%= f.label :nationality %>
-      <%= f.collection_select :nationality_id, Nationality.order(:name), :id, :name, include_blank: true, class: "custom-select" %>
+      <%= f.select :nationality_id, options_from_collection_for_select(Nationality.order(:name), "id", "name"), { include_blank: true }, {class: "custom-select" }  %>
     </div>
     <div class="form-group">
       <%= f.label :club %>
-      <%= f.collection_select :club_id, Club.order(:name), :id, :name, include_blank: true, class: "custom-select" %>
+      <%= f.select :club_id, options_from_collection_for_select(Club.order(:name), "id", "name"), { include_blank: true }, {class: "custom-select" }  %>
     </div>
     <div class="form-group">
       <%= f.label :position %>
-      <%= f.collection_select :position_id, Position.order(:name), :id, :name, include_blank: true, class: "custom-select" %>
+      <%= f.select :position_id, options_from_collection_for_select(Position.order(:name), "id", "name"), { include_blank: true }, {class: "custom-select" }  %>
     </div>
     <div class="form-group">
       <%= f.label :picture %>

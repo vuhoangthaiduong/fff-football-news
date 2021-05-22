@@ -90,6 +90,10 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.8)
     crass (1.0.6)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     erubi (1.10.0)
     execjs (2.7.0)
     faker (2.17.0)
@@ -242,6 +246,7 @@ DEPENDENCIES
   bootstrap-kaminari-views
   byebug
   capybara (>= 3.26)
+  dotenv-rails
   faker (~> 2.17.0)
   image_processing (~> 1.2)
   jbuilder (~> 2.7)
