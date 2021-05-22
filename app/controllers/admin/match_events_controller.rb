@@ -45,9 +45,9 @@ class Admin::MatchEventsController < Admin::BaseController
   def update 
     if check_if_fields_are_valid && @match_event.update(match_event_params)
       flash[:success] = "Match event updated"
-      redirect_to admin_match_event_path(@match_event)
+      redirect_to admin_match_path(@match_event.match)
     else
-      redirect_to admin_match_path(match)
+      redirect_to admin_match_path(@match_event.match)
       flash[:error] = "Something went wrong!"
     end
   end
