@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_19_142543) do
+ActiveRecord::Schema.define(version: 2021_05_21_132952) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -149,15 +149,17 @@ ActiveRecord::Schema.define(version: 2021_05_19_142543) do
     t.index ["league_id"], name: "index_seasons_on_league_id"
   end
 
-  create_table "transfer_history", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "transfer_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "date_of_transfer"
     t.decimal "price", precision: 10, scale: 4
     t.bigint "from_club_id", null: false
     t.bigint "to_club_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["from_club_id"], name: "index_transfer_history_on_from_club_id"
-    t.index ["to_club_id"], name: "index_transfer_history_on_to_club_id"
+    t.bigint "player_id"
+    t.index ["from_club_id"], name: "index_transfer_histories_on_from_club_id"
+    t.index ["player_id"], name: "index_transfer_histories_on_player_id"
+    t.index ["to_club_id"], name: "index_transfer_histories_on_to_club_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -189,6 +191,7 @@ ActiveRecord::Schema.define(version: 2021_05_19_142543) do
   add_foreign_key "players", "nationalities"
   add_foreign_key "players", "positions"
   add_foreign_key "seasons", "leagues"
-  add_foreign_key "transfer_history", "clubs", column: "from_club_id"
-  add_foreign_key "transfer_history", "clubs", column: "to_club_id"
+  add_foreign_key "transfer_histories", "clubs", column: "from_club_id"
+  add_foreign_key "transfer_histories", "clubs", column: "to_club_id"
+  add_foreign_key "transfer_histories", "players"
 end

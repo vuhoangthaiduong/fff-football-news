@@ -35,6 +35,8 @@ gem 'bootstrap-kaminari-views'
 gem 'active_storage_validations'
 gem 'mini_magick', '>= 4.9.5'
 
+gem 'dotenv-rails', groups: [:development, :test]
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 

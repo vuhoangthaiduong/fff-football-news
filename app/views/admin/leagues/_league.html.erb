@@ -16,7 +16,7 @@
   <td>
     <%= link_to 'View Details', admin_league_path(league), class: "btn btn-sm btn-outline-success ml-2" %>
     <% if current_user.is_admin? %>
-      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-league-destroy', "data-toggle" => "modal", "data-target" => "#modal" %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-league-destroy', :data => {toggle: "modal", target: "#modal", href: admin_league_path(league)} %>
     <% end %>
   </td>
 </tr>

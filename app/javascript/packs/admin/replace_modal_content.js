@@ -7,10 +7,10 @@ function replaceWithDestroyModal(target) {
 }
 
 $(document).ready(() => {
-  $modal = $('#modal'),
-  $modalBody = $('#modalBody'),
-  $modalTitle = $('#modalTitle');
-  $modalFooter = $('#modalFooter');
+  $modal = $('.modal'),
+  $modalBody = $('.modal-body'),
+  $modalTitle = $('.modal-title');
+  $modalFooter = $('.modal-footer');
 
   $modal.on('show.bs.modal', function (e) {
     $modal.data("link", $(e.relatedTarget));
@@ -24,6 +24,11 @@ $(document).ready(() => {
   $(document).on("click", ".js-article-destroy", function(e) {
     href = $($modal.data("link")).data('href');
     replaceWithDestroyModal("article");
+  });
+
+  $(document).on("click", ".js-league-destroy", function(e) {
+    href = $($modal.data("link")).data('href');
+    replaceWithDestroyModal("league");
   });
 
   $(document).on("click", ".js-season-destroy", function(e) {
@@ -40,4 +45,15 @@ $(document).ready(() => {
     href = $($modal.data("link")).data('href');
     replaceWithDestroyModal("match");
   });
+
+  $(document).on("click", ".js-player-destroy", function(e) {
+    href = $($modal.data("link")).data('href');
+    replaceWithDestroyModal("player");
+  });
+
+  $(document).on("click", ".js-transfer-history-destroy", function(e) {
+    href = $($modal.data("link")).data('href');
+    replaceWithDestroyModal("transfer history");
+  });
+
 })
