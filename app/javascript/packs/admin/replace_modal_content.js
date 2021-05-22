@@ -56,4 +56,9 @@ $(document).ready(() => {
     replaceWithDestroyModal("transfer history");
   });
 
+  $(document).on("click", ".js-match-event-destroy", function(e) {
+    href = $($modal.data("link")).data('href');
+    replaceWithDestroyModal("match event");
+  });
+
 })

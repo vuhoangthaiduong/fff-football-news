@@ -1,0 +1,6 @@
+$modal = $('#modal'),
+$modalBody = $('#modalBody'),
+$modalTitle = $('#modalTitle');
+$modalTitle.html("Edit event");
+$modalBody.html("<%= escape_javascript(render 'edit_match_event_modal.html.erb') %>");
+$modal.modal();

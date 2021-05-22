@@ -8,6 +8,11 @@ class Admin::MatchesController < Admin::BaseController
 
   def show
     # @match is defined in check_if_match_exists method
+    @first_team_goal_count = MatchEvent.where("match_id = :match_id AND event_type = 1 AND subject_team_id = :subject_team_id",
+                                               match_id: @match.id, subject_team_id: @match.first_team_id).length
+    @second_team_goal_count = MatchEvent.where("match_id = :match_id AND event_type = 1 AND subject_team_id = :subject_team_id",
+                                               match_id: @match.id, subject_team_id: @match.second_team_id).length
+
   end
 
   def new

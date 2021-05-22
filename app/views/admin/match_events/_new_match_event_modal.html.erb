@@ -1,0 +1,49 @@
+<%= form_for(@match_event, url: admin_match_match_events_path) do |f| %>
+<%= render 'layouts/shared/error_messages', object: @match_event %>
+<div class="row">
+  <div class = "col">
+    <div class="form-group">
+      <%= f.label :event_type %>
+      <%= f.select :event_type, options_for_select([["Goal", "1"], ["Penalty", "2"], ["Yellow Card", "3"], ["Red Card", "4"], ["Substitution", "5"]]), {}, { class: "custom-select" } %>
+    </div>
+  </div>
+  <div class = "col">
+    <div class="form-group">
+      <%= f.label :happened_at %>
+      <%= f.datetime_field :happened_at, as: :date, class: 'form-control' %> 
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class = "col">
+    <div class="form-group">
+      <%= f.label :subject_team %>
+      <%= f.select :subject_team_id, options_from_collection_for_select([@match_event.match.first_team, @match_event.match.second_team], "id", "name"), {}, { class: "custom-select" } %>
+    </div>
+  </div>
+  <div class = "col">
+    <div class="form-group">
+      <%= f.label :object_team %>
+      <%= f.select :object_team_id, options_from_collection_for_select([@match_event.match.first_team, @match_event.match.second_team], "id", "name"), {}, { class: "custom-select" } %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class = "col">
+    <div class="form-group">
+      <%= f.label :subject_player %>
+      <%= f.select :subject_player_id, options_from_collection_for_select(@match_event.match.first_team.players + @match_event.match.second_team.players, "id", "name"), {}, { class: "custom-select" } %>
+    </div>
+  </div>
+  <div class = "col">
+    <div class="form-group">
+      <%= f.label :object_player %>
+      <%= f.select :object_player_id, options_from_collection_for_select(@match_event.match.first_team.players + @match_event.match.second_team.players, "id", "name"), {}, { class: "custom-select" } %>
+    </div>
+  </div>
+</div>
+<div class="col d-flex justify-content-end">
+  <%= submit_tag 'Cancel', type: :reset, class: "btn btn-secondary mr-2", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+  <%= f.submit "Submit", class: "btn btn-primary" %>
+  <% end %>
+</div>
