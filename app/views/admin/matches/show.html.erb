@@ -23,12 +23,14 @@
 
               </div>
 
-              <p><b>League:</b> <%= @match.first_team.name %>, of <%= @match.season.start_at %> ~ <%= @match.season.end_at %> season</p>
-              <p><b>First Team:</b> <%= @match.first_team.name %></p>
-              <p><b>Second Team:</b> <%= @match.second_team.name %></p>
+              <p><b>League:</b> <%= link_to @match.season.league.name, admin_league_path(@match.season.league) %> (season <%= @match.season.start_at %> ~ <%= @match.season.end_at %>)</p>
+              <p><b>First Team:</b> <%= link_to @match.first_team.name, admin_club_path(@match.first_team) %> (<%= @first_team_goal_count %> goals)</p>
+              <p><b>Second Team:</b> <%= link_to @match.second_team.name, admin_club_path(@match.second_team) %> (<%= @second_team_goal_count %> goals)</p>
               <p><b>Start at:</b> <%= @match.start_at %></p>
               <p><b>End at:</b> <%= @match.end_at %></p>
               <p><b>Judge:</b> <%= @match.judge_name %></p> 
+              <div><b>Match Events:</b> </ul class="list-group"><%= render @match.match_events %></ul></div>
+              <div><%= link_to 'Add event', new_admin_match_match_event_path(match_id: @match.id), class: "btn btn-sm btn-outline-success mt-2", remote: true %>        
             </div>
           </div>
         </div>

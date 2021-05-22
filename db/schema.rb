@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_132952) do
+ActiveRecord::Schema.define(version: 2021_05_22_060246) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -88,6 +88,23 @@ ActiveRecord::Schema.define(version: 2021_05_21_132952) do
     t.text "region"
   end
 
+  create_table "match_events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "match_id"
+    t.bigint "subject_team_id"
+    t.bigint "object_team_id"
+    t.bigint "subject_player_id"
+    t.bigint "object_player_id"
+    t.datetime "happened_at"
+    t.integer "event_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["match_id"], name: "index_match_events_on_match_id"
+    t.index ["object_player_id"], name: "index_match_events_on_object_player_id"
+    t.index ["object_team_id"], name: "index_match_events_on_object_team_id"
+    t.index ["subject_player_id"], name: "index_match_events_on_subject_player_id"
+    t.index ["subject_team_id"], name: "index_match_events_on_subject_team_id"
+  end
+
   create_table "matches", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "start_at"
     t.datetime "end_at"
@@ -96,7 +113,6 @@ ActiveRecord::Schema.define(version: 2021_05_21_132952) do
     t.string "judge_name"
     t.integer "first_team_goal_count"
     t.integer "second_team_goal_count"
-    t.string "match_event"
     t.bigint "first_team_id"
     t.bigint "second_team_id"
     t.bigint "season_id"
@@ -185,6 +201,11 @@ ActiveRecord::Schema.define(version: 2021_05_21_132952) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
   add_foreign_key "comments", "users"
+  add_foreign_key "match_events", "clubs", column: "object_team_id"
+  add_foreign_key "match_events", "clubs", column: "subject_team_id"
+  add_foreign_key "match_events", "matches"
+  add_foreign_key "match_events", "players", column: "object_player_id"
+  add_foreign_key "match_events", "players", column: "subject_player_id"
   add_foreign_key "matches", "clubs", column: "first_team_id"
   add_foreign_key "matches", "clubs", column: "second_team_id"
   add_foreign_key "players", "clubs"

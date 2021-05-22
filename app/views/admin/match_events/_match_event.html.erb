@@ -1,0 +1,11 @@
+<li class="list-group-item">
+  <div class = "d-flex justify-content-between">
+    <span> <b><%= match_event.happened_at %></b> <%= get_match_event_text(match_event) %></span>
+    <% if current_user.is_admin? %>
+      <div>
+        <%= link_to 'Edit event', edit_admin_match_match_event_path(match_id: @match.id, id: match_event.id), class: "btn btn-sm btn-outline-success", remote: true %>        
+        <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-match-event-destroy', :data => {toggle: "modal", target: "#modal", href: admin_match_match_event_path(match_id: match_event.match.id, id: match_event.id), remote: true} %>
+      </div>
+    <% end %>
+  </div>
+</li>

@@ -12,7 +12,8 @@ import "../stylesheets/admin"
 import "./admin/sb-admin-2"
 import "./admin/bootstrap.bundle.min.js"
 import "./admin/replace_modal_content.js"
-import "./admin/seasons.js"
+import "./admin/get_seasons_by_league.js"
+import "./admin/add_match_event.js"
 
 window.$ = window.jQuery = require("jquery");
 require("jquery-datetimepicker")
