@@ -1,0 +1,34 @@
+
+<%= form_for(@transfer_history, url: admin_player_transfer_history_path) do |f| %>
+  <div class = "row">
+      <div class = "col">
+        <%= f.label :transfer_from %>
+        <div><b><%= @transfer_history.from_club.name %></b></div>
+      </div>
+      <div class = "col">
+        <div class="form-group">
+          <%= f.label :transfer_to %>
+          <% options = Club.where("id != ?", @transfer_history.player.club.id).map{|s| ["#{s.name}", s.id]}%>
+          <%= f.select :to_club_id, options_for_select(options), {}, { include_blank: true, class: "custom-select" }  %>
+        </div>
+      </div>
+  </div>
+  <div class = "row">
+      <div class = "col">
+        <div class="form-group">
+          <%= f.label :date_of_transfer %>
+          <%= f.text_field :date_of_transfer, autocomplete: :off, class: 'form-control datetimepicker' %> 
+        </div>
+      </div>
+    <div class = "col">
+      <div class="form-group">
+        <%= f.label :for %>
+        <%= f.number_field :price, placeholder: "Price in USD", min: 0, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+<div class="col d-flex justify-content-end">
+  <%= submit_tag 'Cancel', type: :reset, class: "btn btn-secondary mr-2", "data-dismiss" => "modal", "aria-hidden" => "true" %>
+  <%= f.submit "Save changes", class: "btn btn-primary" %>
+  <% end %>
+</div>

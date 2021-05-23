@@ -1,39 +1,78 @@
 <section id="feature_category_section" class="feature_category_section single-page section_wrapper">
   <div class="container">
-    <div class="row">
+    <div class="row mb-3">
       <div class="col-md-12">
-        <div class="single_content_layout">
-          <div class="item feature_news_item">
-            <div class="item_img">
-            </div>
-            <div class="item_wrapper">
-              <div class="d-flex justify-content-between mb-3">
-                <div class="news_item_title">
-                  <%= link_to "#{@match.first_team.name} vs #{@match.second_team.name}", admin_match_path(@match), class: "h2" %>
-                </div>
-                <div class="dropdown">
-                  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Action
-                  </button>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                    <%= link_to "Edit", edit_admin_match_path(@match), class: "dropdown-item" %>
-                    <%= link_to "Delete", admin_match_path(@match), class: "dropdown-item", method: :delete %>
-                  </div>
-                </div>
-
-              </div>
-
-              <p><b>League:</b> <%= link_to @match.season.league.name, admin_league_path(@match.season.league) %> (season <%= @match.season.start_at %> ~ <%= @match.season.end_at %>)</p>
-              <p><b>First Team:</b> <%= link_to @match.first_team.name, admin_club_path(@match.first_team) %> (<%= @first_team_goal_count %> goals)</p>
-              <p><b>Second Team:</b> <%= link_to @match.second_team.name, admin_club_path(@match.second_team) %> (<%= @second_team_goal_count %> goals)</p>
-              <p><b>Start at:</b> <%= @match.start_at %></p>
-              <p><b>End at:</b> <%= @match.end_at %></p>
-              <p><b>Judge:</b> <%= @match.judge_name %></p> 
-              <div><b>Match Events:</b> </ul class="list-group"><%= render @match.match_events %></ul></div>
-              <div><%= link_to 'Add event', new_admin_match_match_event_path(match_id: @match.id), class: "btn btn-sm btn-outline-success mt-2", remote: true %>        
+        <div class="d-flex justify-content-between mb-3">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><%= link_to "Matches", admin_matches_path %></li>
+              <li class="breadcrumb-item active" aria-current="page"><%= link_to "#{@match.first_team.name} vs #{@match.second_team.name}", admin_match_path(@match) %></li>
+            </ol>
+          </nav>
+          <div class="dropdown">
+            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Action
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+              <%= link_to "Edit", edit_admin_match_path(@match), class: "dropdown-item" %>
+              <%= link_to "Delete", admin_match_path(@match), class: "dropdown-item", method: :delete %>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class = "row">
+      <div class= "col-6">
+        <div class = "h3">
+          <%= link_to "#{@match.first_team.name} vs #{@match.second_team.name}", admin_match_path(@match), class: "h2" %><hr/>
+        </div>
+      </div>
+    </div>
+    <div class = "row">
+      <div class= "col-6">
+        <div class = "row mb-3 versus-image">
+          <div class= "col">
+            <%= image_tag @match.first_team.logo, class: "img-profile rounded-circle shadow", style: "height: 200px; width: 200px" %>
+          </div>
+          <div class= "col">
+          </div>
+          <div class= "col">
+            <%= image_tag @match.second_team.logo, class: "img-profile rounded-circle shadow", style: "height: 200px; width: 200px" %>
+          </div>
+        </div>
+        <div class= "bg-secondary text-white rounded p-3">
+          <div class="d-flex justify-content-between mb-2">
+            <b>League:</b> <%= link_to @match.season.league.name, admin_league_path(@match.season.league), class: "text-white" %>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <b>Season:</b> <%= @match.season.start_at %> ~ <%= @match.season.end_at %>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <b class = "mr-auto">First Team:</b> <%= link_to @match.first_team.name, admin_club_path(@match.first_team), class: "text-white" %>
+            <% result = @first_team_goal_count - @second_team_goal_count %>
+            <span class="badge badge-<%= result < 0 ? "danger" : "success" %> badge-pill ml-2"><%= @first_team_goal_count %> goals</span>        
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <b class = "mr-auto">Second Team:</b> <%= link_to @match.second_team.name, admin_club_path(@match.second_team), class: "text-white" %>
+            <span class="badge badge-<%= result <= 0 ? "success" : "danger" %> badge-pill ml-2"><%= @second_team_goal_count %> goals</span>
+          </div>
+          <div class="d-flex justify-content-between mb-2">
+            <b>Start at:</b> <%= @match.start_at %>          
+          </div>  
+          <div class="d-flex justify-content-between mb-2">
+            <b>End at:</b> <%= @match.end_at %>          
+          </div>
+          <div class="d-flex justify-content-between">
+            <b>Judge:</b> <%= @match.judge_name %>
+          </div>    
+        </div>
+      </div>
+      <div class = "col-6">
+        <ul class="list-group">
+          <div class = "list-group-item list-group-item-secondary font-weight-bold text-uppercase">Match events</div>
+          <%= render @match.match_events %>     
+        </ul>
+        <div><%= link_to 'Add event', new_admin_match_match_event_path(match_id: @match.id), class: "list-group-item list-group-item-action bg-success text-white text-center mt-2", remote: true %>        
       </div>
     </div>
   </div>

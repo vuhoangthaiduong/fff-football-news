@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :articles
     resources :clubs
     resources :players do
-      resources :transfer_histories, only: [:create, :destroy]
+      resources :transfer_histories
     end
     resources :matches do
       resources :match_events

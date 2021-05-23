@@ -1,0 +1,6 @@
+$modal = $('#modal'),
+$modalBody = $('#modalBody'),
+$modalTitle = $('#modalTitle');
+$modalTitle.html("Edit transfer history");
+$modalBody.html("<%= escape_javascript(render 'edit_transfer_history_modal.html.erb') %>");
+$modal.modal();

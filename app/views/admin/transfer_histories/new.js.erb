@@ -1,0 +1,6 @@
+$modal = $('#modal'),
+$modalBody = $('#modalBody'),
+$modalTitle = $('#modalTitle');
+$modalTitle.html("Transfer player");
+$modalBody.html("<%= escape_javascript(render 'new_transfer_history_modal.html.erb') %>");
+$modal.modal();
