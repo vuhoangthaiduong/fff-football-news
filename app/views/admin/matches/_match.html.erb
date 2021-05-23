@@ -1,9 +1,11 @@
 <tr>
-  <td class="pl-4"><%= index %></td>
+  <td class="pl-4"><%= get_no_in_table(index) %></td>
   <td>
+    <%= image_tag match.first_team.logo, class: "img-profile rounded-circle", style: "height: 20px; width: 20px" if match.first_team.logo.attached? %>
     <span class="font-medium text-muted mb-0"><%= match.first_team.name %></span>
   </td>
   <td>
+    <%= image_tag match.second_team.logo, class: "img-profile rounded-circle", style: "height: 20px; width: 20px" if match.second_team.logo.attached? %>
     <span class="font-medium text-muted mb-0"><%= match.second_team.name %></span>
   </td>
   <td>

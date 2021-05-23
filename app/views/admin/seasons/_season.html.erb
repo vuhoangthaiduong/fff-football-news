@@ -1,6 +1,8 @@
 <li class="list-group-item">
-  <%= season.start_at %> ~ <%= season.end_at %>
-  <% if current_user.is_admin? %>
-    <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-link ml-2 js-season-destroy', :data => {toggle: "modal", target: "#modal", href: admin_league_season_path(league_id: season.league.id, id: season.id), remote: true} %>
-  <% end %>
+  <div class = "d-flex justify-content-between">
+    <%= season.start_at %> ~ <%= season.end_at %>
+    <% if current_user.is_admin? %>
+      <%= button_tag "Delete", type: 'button', class: 'btn btn-sm btn-outline-danger ml-2 js-season-destroy', :data => {toggle: "modal", target: "#modal", href: admin_league_season_path(league_id: season.league.id, id: season.id), remote: true} %>
+    <% end %>
+  </div>
 </li>

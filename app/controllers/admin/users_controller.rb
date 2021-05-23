@@ -25,7 +25,7 @@ class Admin::UsersController < Admin::BaseController
     @user.profile_picture.attach(params[:users][:profile_picture])
     if @user.save
       log_in @user
-      flash[:success] = "Welcome to FFN!"
+      flash[:success] = "Welcome to F4N!"
       redirect_to @user
     else
       render 'new'

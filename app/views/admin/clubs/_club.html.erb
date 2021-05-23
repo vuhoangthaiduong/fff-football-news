@@ -1,6 +1,7 @@
 <tr>
-  <td class="pl-4"><%= index %></td>
+  <td class="pl-4"><%= get_no_in_table(index) %></td>
   <td>
+    <%= image_tag club.logo, class: "img-profile rounded-circle", style: "height: 20px; width: 20px" if club.logo.attached? %>
     <span class="font-medium text-muted mb-0"><%= club.name %></span>
   </td>
   <td>

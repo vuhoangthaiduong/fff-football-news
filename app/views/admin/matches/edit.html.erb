@@ -37,6 +37,20 @@
         </div>
       </div>
     </div>
+        <div class= row>
+      <div class = "col-6">
+        <div class="form-group">
+          <%= f.label :first_team %>
+          <%= f.collection_select :first_team_id, Club.order(:name), :id, :name, { include_blank: true }, { class: "custom-select" } %>
+        </div>
+      </div>
+      <div class = "col-6">
+        <div class="form-group">
+          <%= f.label :second_team %>
+          <%= f.collection_select :second_team_id, Club.order(:name), :id, :name, { include_blank: true }, { class: "custom-select" } %>
+        </div>
+      </div>
+    </div>
     <div class="form-group">
       <%= f.label :stage_in_league %>
       <%= f.text_field :stage_in_league, class: 'form-control' %>
@@ -44,14 +58,6 @@
     <div class="form-group">
       <%= f.label :judge_name %>
       <%= f.text_field :judge_name, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :first_team %>
-      <%= f.collection_select :first_team_id, Club.order(:name), :id, :name, { include_blank: true }, { class: "custom-select" } %>
-    </div>
-    <div class="form-group">
-      <%= f.label :second_team %>
-      <%= f.collection_select :second_team_id, Club.order(:name), :id, :name, { include_blank: true }, { class: "custom-select" } %>
     </div>
     <div class="col d-flex justify-content-end">
       <%= link_to "Cancel", admin_match_path(@match), class: "btn btn-secondary mr-2" %>
